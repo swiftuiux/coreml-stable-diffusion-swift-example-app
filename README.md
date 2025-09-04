@@ -1,4 +1,4 @@
-# ⭐ Star it — so I know it’s worth to keep improving it.
+## ⭐ Star it — so I know it’s worth to keep improving it.
 
 ## CoreML stable diffusion image generation example app
 
@@ -87,7 +87,3 @@ real image → (SafetyChecker) → safe output
 ### Performance
 
  The speed can be unpredictable. Sometimes a model will suddenly run a lot slower than before. It appears as if Core ML is trying to be smart in how to schedule things, but doesn’t always optimal.
-
-### Deploying Transformers on the Apple Neural Engine [Case study](https://machinelearning.apple.com/research/neural-engine-transformers)
-
-
