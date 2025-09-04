@@ -24,11 +24,7 @@ Enter a prompt or pick up a picture and press "Generate" (You don't need to prep
 ## How it works
 
 ### Super short
-On the first glance it looks like a jungle of files (TextEncoder, U-Net, VAE, SafetyChecker, vocab stuff, etc.), but if you zoom out, the whole pipeline is really just:
-
 **words → numbers → math → picture → check**
-
-Everything else is just supporting that flow.
 
 ### So in short:
 text → (TextEncoder) → numbers
