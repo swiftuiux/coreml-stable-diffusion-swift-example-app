@@ -35,7 +35,7 @@ real image → (SafetyChecker) → safe output
 ### Basically
 
     1.  You type "a red apple".  vocab.json + merges.txt handle tokenization → break it into units like [a] [red] [apple]. TextEncoder.mlmodelc maps those tokens into numerical vectors in latent space.
-    2.  The model’s brain (U-Net).
+    2.  The models brain (U-Net).
 It starts with just random noise (a messy canvas). Then, step by step, it removes noise and adds structure, following the instructions from your text (the numbers from the TextEncoder). After many steps, what was just noise slowly looks like the picture you asked for. At this stage, the image is not made of pixels like (red, green, blue dots). Instead, it lives in a latent space — basically a compressed mathematical version of the image.
     3.  Hidden space (latent space). It’s the hidden mathematical space where the U-Net operates. Latent space = a hidden, compressed version of images where the model does its work.   Instead of dealing with millions of pixels directly (which is heavy), the model uses a smaller grid of numbers that still captures the essence of shapes, colors, and structures. Think of it like a sketch or a blueprint: not the full detailed image, but enough information to reconstruct it later. This is why it’s called latent (hidden): the image exists there, but only as math.
         •    Latent space = where (Think of it as the canvas the painter is working on)
