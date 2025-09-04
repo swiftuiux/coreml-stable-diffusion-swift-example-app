@@ -1,6 +1,6 @@
 # CoreML stable diffusion image generation example app
-### Please star the repository if you believe continuing the development of this package is worthwhile. This will help me understand which package deserves more effort.
 
+## ⭐ Star it — so I know it’s worth to keep improving it.
 
 ## [Swift package source](https://github.com/swiftuiux/coreml-stable-diffusion-swift)
 ## [Documentation(API)](https://swiftpackageindex.com/swiftuiux/coreml-stable-diffusion-swift/main/documentation/coreml_stable_diffusion_swift)
