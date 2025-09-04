@@ -21,6 +21,32 @@ Enter a prompt or pick up a picture and press "Generate" (You don't need to prep
 
 ![The concept](https://github.com/swiftuiux/coreml-stable-diffusion-swift-example/blob/main/img/img_03.png)
 
+## How it works
+
+### Super short
+words → numbers → math → picture.
+
+### So in short:
+text → (TextEncoder) → numbers
+numbers + noise → (U-Net) → hidden image
+hidden image → (VAE Decoder) → real image
+real image → (SafetyChecker) → safe output
+
+### Basically
+
+    1.  You type "a red apple".  vocab.json + merges.txt handle tokenization → break it into units like [a] [red] [apple]. TextEncoder.mlmodelc maps those tokens into numerical vectors in latent space.
+    2.  The model’s brain (U-Net).
+It starts with just random noise (a messy canvas). Then, step by step, it removes noise and adds structure, following the instructions from your text (the numbers from the TextEncoder). After many steps, what was just noise slowly looks like the picture you asked for. At this stage, the image is not made of pixels like (red, green, blue dots). Instead, it lives in a latent space — basically a compressed mathematical version of the image.
+    3.  Hidden space (latent space). It’s the hidden mathematical space where the U-Net operates. Latent space = a hidden, compressed version of images where the model does its work.   Instead of dealing with millions of pixels directly (which is heavy), the model uses a smaller grid of numbers that still captures the essence of shapes, colors, and structures. Think of it like a sketch or a blueprint: not the full detailed image, but enough information to reconstruct it later. This is why it’s called latent (hidden): the image exists there, but only as math.
+        •    Latent space = where (Think of it as the canvas the painter is working on)
+        •    U-Net = how (Think of it as the work being done (the painter’s hand moving)
+    4.    VAE Decoder.
+Once the latent image is ready, the VAEDecoder.mlmodelc converts it into an actual picture (pixels).
+If you want to go the other way (picture → latent space), that’s what VAEEncoder.mlmodelc does.
+    5.    Safety check.
+Finally, SafetyChecker.mlmodelc looks at the image and makes sure it follows safety rules. If not, it may block or adjust it.
+It works by running the generated image through a separate classifier (basically another small neural net) that predicts if the picture belongs to any of these categories. If it does, the checker can either blur it, replace it, or just stop the output.
+
 ### Typical set of files for a model und the purpose of each file
 
 | File Name                            | Description                                                      |
