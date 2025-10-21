@@ -68,17 +68,17 @@ real image → (SafetyChecker) → safe output
 
 ### Typical set of files for a model und the purpose of each file
 
-| File Name                            | Description                                                      |
-|--------------------------------------|------------------------------------------------------------------|
-| `TextEncoder.mlmodelc`               | Encodes input text into a vector space for further processing.   |
-| `Unet.mlmodelc`                      | Core model handling the transformation of encoded vectors into intermediate image representations. |
-| `UnetChunk1.mlmodelc`                | First segment of a segmented U-Net model for optimized processing in environments with memory constraints. |
-| `UnetChunk2.mlmodelc`                | Second segment of the segmented U-Net model, completing the tasks started by the first chunk. |
-| `VAEDecoder.mlmodelc`                | Decodes the latent representations into final image outputs.     |
-| `VAEEncoder.mlmodelc`                | Compresses input image data into a latent space for reconstruction or further processing. |
-| `SafetyChecker.mlmodelc`             | Ensures generated content adheres to safety guidelines by checking against predefined criteria. |
-| `vocab.json`                         | Contains the vocabulary used by the text encoder for tokenization and encoding processes. |
-| `merges.txt`                         | Stores the merging rules for byte-pair encoding used in the text encoder. |
+| Step | File Name                | Description |
+|------|--------------------------|-------------|
+| 1    | `vocab.json`             | **The dictionary** – Lists all known words and subwords. Like a reference book for breaking sentences into pieces. |
+| 2    | `merges.txt`             | **The word builder** – Defines how small text units (tokens) combine. Like turning syllables into words. |
+| 3    | `TextEncoder.mlmodelc`   | **The translator** – Converts tokenized text into vectors. Like encoding a sentence into machine language. |
+| 4    | `Unet.mlmodelc`          | **The artist’s hand** – Starts with noise and shapes the image in latent space. Like sketching based on instructions. |
+| 4a   | `UnetChunk1.mlmodelc`    | *(Split variant)* **– First brushstroke** – Begins image generation, rough shapes. |
+| 4b   | `UnetChunk2.mlmodelc`    | *(Split variant)* **– Second brushstroke** – Adds detail and completes the latent image. |
+| 5    | `VAEDecoder.mlmodelc`    | **The lens** – Decodes latent image into real pixels. Like turning a blueprint into a full picture. |
+| 6    | `SafetyChecker.mlmodelc` | **The security guard** – Scans the output for unsafe content. Blocks or filters inappropriate results. |
+| —    | `VAEEncoder.mlmodelc`    | *(Optional – when converting real images)* **– The compressor** – Shrinks an image into latent form. |
 
 
 ## Model set example
